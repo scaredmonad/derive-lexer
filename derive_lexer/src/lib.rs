@@ -10,12 +10,13 @@ pub trait Tokenize {
 mod test {
     use crate::derive_lexer_macro::Tokenize;
     use crate::Tokenize;
+    use regex;
 
     #[derive(Tokenize, Debug)]
     enum Token {
-        #[lex(pattern = "@")]
+        #[lex(pattern = "^@\\w+")]
         Decorator,
-        #[lex(pattern = "let")]
+        #[lex(pattern = "let\\s")]
         LetBinding,
     }
 
@@ -29,6 +30,8 @@ mod test {
             tokens.push(token);
             curr_input = rest;
         }
+
+        assert_eq!(tokens.len(), 2);
 
         dbg!(tokens);
     }

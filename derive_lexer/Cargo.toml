@@ -5,3 +5,4 @@ edition = "2021"
 
 [dependencies]
 derive_lexer_macro = { path = "../derive_lexer_macro" }
+regex = "1"
